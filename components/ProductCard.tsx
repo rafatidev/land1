@@ -1,6 +1,7 @@
+"use client";
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Product } from '../types';
 import { useCartStore } from '../store/cartStore';
 
@@ -17,12 +18,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-yellow-400/20 transition-all duration-300 transform hover:-translate-y-1 flex flex-col">
-      <Link to={`/products/${product.id}`} className="block">
+      <Link href={`/products/${product.id}`} className="block">
         <img src={product.image_url} alt={product.name} className="w-full h-56 object-cover" />
       </Link>
       <div className="p-4 flex flex-col flex-grow">
         <h3 className="text-lg font-semibold text-white mb-2 flex-grow">
-          <Link to={`/products/${product.id}`} className="hover:text-yellow-400 transition-colors">
+          <Link href={`/products/${product.id}`} className="hover:text-yellow-400 transition-colors">
             {product.name}
           </Link>
         </h3>

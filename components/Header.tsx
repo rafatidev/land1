@@ -1,6 +1,7 @@
+"use client";
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useCartStore } from '../store/cartStore';
 
 const ShoppingBagIcon = () => (
@@ -11,18 +12,23 @@ const ShoppingBagIcon = () => (
 
 const Header: React.FC = () => {
   const totalItems = useCartStore((state) => state.totalItems());
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
     <header className="bg-black/50 backdrop-blur-sm sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <Link to="/" className="text-2xl md:text-3xl font-bold text-yellow-400 tracking-wider">
+          <Link href="/" className="text-2xl md:text-3xl font-bold text-yellow-400 tracking-wider">
             جمعه سیاه
           </Link>
-          <nav className="flex items-center space-i-4">
-            <Link to="/cart" className="relative p-2 text-gray-300 hover:text-yellow-400 transition-colors">
+          <nav className="flex items-center space-x-4">
+            <Link href="/cart" className="relative p-2 text-gray-300 hover:text-yellow-400 transition-colors">
               <ShoppingBagIcon />
-              {totalItems > 0 && (
+              {isMounted && totalItems > 0 && (
                 <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
                   {totalItems}
                 </span>
