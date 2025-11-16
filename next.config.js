@@ -1,10 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  images: {
-    unoptimized: true,
-  },
-  // برای OpenNext
-  output: 'standalone',
-};
+const nextConfig = {};
 
 module.exports = nextConfig;
